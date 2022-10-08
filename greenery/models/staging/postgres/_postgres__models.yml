@@ -1,0 +1,132 @@
+version: 2
+
+models:
+  - name: stg_addresses
+    description: Contains address information for each address_id. 
+    columns:
+      - name: address_id
+        tests:
+          - not_null
+      - name: address
+      - name: zipcode
+      - name: state
+      - name: country
+
+  - name: stg_events
+    description: Contains event information for each event_id.
+    columns:
+      - name: event_id
+        tests: 
+          - not_null
+      - name: session_id
+      - name: user_id
+      - name: page_url
+      - name: created_at
+        tests: 
+          - not_null
+      - name: event_type
+      - name: order_id
+      - name: product_id
+
+  - name: stg_order_items
+    description: Contains order item information.
+    columns:
+      - name: order_id
+        tests: 
+          - not_null
+      - name: product_id
+      - name: quantity
+        tests: 
+          - positive_values
+
+  - name: stg_orders
+    description: Contains order information.
+    columns: 
+      - name: order_id
+        tests: 
+          - not_null
+      - name: user_id
+        tests: 
+          - not_null
+      - name: promo_id
+      - name: address_id
+      - name: created_at
+        tests: 
+          - not_null
+      - name: order_cost
+        tests: 
+          - positive_values
+      - name: shipping_cost
+        tests: 
+          - positive_values
+      - name: order_total
+        tests: 
+          - positive_values
+      - name: tracking_id
+      - name: shipping_service
+      - name: estimated_delivery_at
+      - name: delivered_at
+      - name: status
+
+  - name: stg_products
+    description: Contains product information.
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+      - name: name
+      - name: price
+        tests: 
+          - positive_values
+      - name: inventory
+        tests: 
+          - positive_values
+
+  - name: stg_promos
+    description: Contains promo information.
+    columns: 
+      - name: promo_id
+        tests:
+          - not_null
+      - name: discount
+      - name: status
+
+  - name: stg_superheroes
+    description: Contains superhero information.
+    columns: 
+      - name: id
+        tests:
+          - not_null
+      - name: name
+      - name: gender
+      - name: eye_color
+      - name: race
+      - name: hair_color
+      - name: height
+      - name: publisher
+      - name: skin_color
+      - name: alignment
+      - name: weight
+        tests: 
+          - positive_values
+      - name: created_at
+        tests:
+          - not_null
+      - name: updated_at
+
+  - name: stg_users
+    description: Contains user information.
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: created_at
+        tests:
+          - not_null
+      - name: updated_at
+      - name: address_id
+

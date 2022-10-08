@@ -1,0 +1,44 @@
+version: 2
+
+sources:
+
+  - name: postgres 
+    schema: public 
+    database: raw 
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+
+    tables:
+      - name: addresses 
+        #loaded_at_field: created_at
+        description: >
+          Contains address information. PK: address_id.
+      - name: users
+        loaded_at_field: created_at
+        description: >
+          Contains user-level information. PK: user_id.
+      - name: promos
+        description: >
+          Contains promo information. PK: promo_id.
+      - name: products
+        description: >
+          Contains product information. PK: product_id.
+      - name: orders
+        description: >
+          Contains order information. PK: order_id.
+      - name: order_items
+        description: >
+          Contains order item information. PK: order_id.
+      - name: events
+        description: >
+          Contains event information. PK: event_id.
+      - name: superheroes
+        description: >
+          Contains information about superheroes. PK: id.
