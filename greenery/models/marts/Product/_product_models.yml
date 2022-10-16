@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: fact_page_views
+    description: "A table containing information on page view events."
+    columns:
+      - name: event_id
+        description: "The unique ID for an event."
+        tests:
+          - unique
+
+      - name: page_view_created_at
+        description: "When the page view occurred."
+
+      - name: session_id
+        description: "The unique ID for the session."
+
+      - name: user_id
+        description: "The unique ID for the user."
+
+      - name: page_url
+        description: "The page URL the event occurred on."
+
+      - name: product_id
+        description: "The product ID the event occurred on."
+
+
+  - name: fact_sessions
+    description: "A table containing information on sessions."
+    columns:
+      - name: session_id
+        description: "The unique ID for the session."
+        tests:
+          - unique
+          - not_null
+
+      - name: user_id
+        description: "The unique ID for the user."
+        tests:
+          - not_null
+
+      - name: order_id
+        description: "The unique ID for the order that was placed (can be null if no order was placed)."
+
+      - name: session_started_at
+        description: "When the session began."
+
+      - name: session_ended_at
+        description: "When the session ended."

@@ -1,0 +1,104 @@
+version: 2
+
+models:
+  - name: int_orders_promos
+    description: "A view combining order information with promo and product quantity information."
+    columns:
+      - name: order_id
+        description: "The unqiue ID for an order."
+        tests:
+          - unique
+          - not_null
+
+      - name: user_id
+        description: "The unique ID for a user."
+        tests:
+          - not_null
+
+      - name: promo_id
+        description: "The promo used in the order"
+
+      - name: address_id
+        description: "The user's address ID."
+
+      - name: order_created_at
+        description: "When the order was created."
+
+      - name: order_cost
+        description: "The cost of items in the order (exc delivery)."
+        tests:
+          - positive_values
+
+      - name: shipping_cost
+        description: "The cost of shipping for the order."
+        tests:
+          - positive_values
+
+      - name: total_cost
+        description: "The total cost of the order (inc delivery)."
+        tests:
+          - positive_values
+
+      - name: promo_discount
+        description: "The discount received on the order from a promo ID."
+        tests:
+          - positive_values
+
+      - name: product_quantity
+        description: "The number of items purchased in the order."
+        tests:
+          - positive_values
+
+      - name: tracking_id
+        description: "The tracking ID for shipping."
+
+      - name: shipping_service
+        description: "The service used for shipping."
+
+      - name: estimated_delivery_at_utc
+        description: "When the order was estimated to be delivered (if shipped)."
+
+      - name: delivered_at_utc
+        description: "When the order was actually delivered."
+
+      - name: order_status
+        description: "The status of the order (preparing, shipped, delivered)."
+        tests:
+          - not_null
+
+
+  - name: int_user_addresses
+    description: "A view combining user information with their address details."
+    columns:
+      - name: user_id
+        description: "The unique ID for the user."
+        tests:  
+          - not_null
+          - unique
+
+      - name: first_name
+        description: "The user's first name."
+
+      - name: last_name
+        description: "The user's last name."
+
+      - name: email
+        description: "The user's email address."
+
+      - name: phone_number
+        description: "The user's phone number."
+
+      - name: address
+        description: "The user's address."
+
+      - name: zipcode
+        description: "The user's zip code."
+
+      - name: state
+        description: "The user's state."
+
+      - name: user_created_at
+        description: "When the user was created."
+
+      - name: user_updated_at
+        description: "When the user's information was last updated."

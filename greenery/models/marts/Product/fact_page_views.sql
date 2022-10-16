@@ -4,13 +4,12 @@
   )
 }}
 
-SELECT 
+SELECT
     event_id
+,   created_at_utc as page_view_created_at
 ,   session_id
 ,   user_id
 ,   page_url
-,   created_at as created_at_utc
-,   event_type
-,   order_id
 ,   product_id
-FROM {{ source('postgres', 'events') }}
+from {{ ref('stg_events') }}
+where event_type = 'page_view'

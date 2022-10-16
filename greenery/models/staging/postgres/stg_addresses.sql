@@ -7,7 +7,7 @@
 SELECT 
     address_id
 ,   address
-,   zipcode
+,   replace(zipcode,',','') as zipcode
 ,   state
 ,   country
 FROM {{ source('postgres', 'addresses') }}

@@ -39,6 +39,3 @@ sources:
       - name: events
         description: >
           Contains event information. PK: event_id.
-      - name: superheroes
-        description: >
-          Contains information about superheroes. PK: id.

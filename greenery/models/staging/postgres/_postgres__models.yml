@@ -6,6 +6,7 @@ models:
     columns:
       - name: address_id
         tests:
+          - unique
           - not_null
       - name: address
       - name: zipcode
@@ -18,10 +19,13 @@ models:
       - name: event_id
         tests: 
           - not_null
+          - unique
       - name: session_id
+          - not null
       - name: user_id
+          - not null
       - name: page_url
-      - name: created_at
+      - name: created_at_utc
         tests: 
           - not_null
       - name: event_type
@@ -35,7 +39,7 @@ models:
         tests: 
           - not_null
       - name: product_id
-      - name: quantity
+      - name: product_quantity
         tests: 
           - positive_values
 
@@ -45,12 +49,13 @@ models:
       - name: order_id
         tests: 
           - not_null
+          - unique
       - name: user_id
         tests: 
           - not_null
       - name: promo_id
       - name: address_id
-      - name: created_at
+      - name: created_at_utc
         tests: 
           - not_null
       - name: order_cost
@@ -64,9 +69,9 @@ models:
           - positive_values
       - name: tracking_id
       - name: shipping_service
-      - name: estimated_delivery_at
-      - name: delivered_at
-      - name: status
+      - name: estimated_delivery_at_utc
+      - name: delivered_at_utc
+      - name: order_status
 
   - name: stg_products
     description: Contains product information.
@@ -74,11 +79,12 @@ models:
       - name: product_id
         tests:
           - not_null
-      - name: name
-      - name: price
+          - unique
+      - name: product_name
+      - name: product_price
         tests: 
           - positive_values
-      - name: inventory
+      - name: quantity_available
         tests: 
           - positive_values
 
@@ -88,31 +94,9 @@ models:
       - name: promo_id
         tests:
           - not_null
+          - unique
       - name: discount
-      - name: status
-
-  - name: stg_superheroes
-    description: Contains superhero information.
-    columns: 
-      - name: id
-        tests:
-          - not_null
-      - name: name
-      - name: gender
-      - name: eye_color
-      - name: race
-      - name: hair_color
-      - name: height
-      - name: publisher
-      - name: skin_color
-      - name: alignment
-      - name: weight
-        tests: 
-          - positive_values
-      - name: created_at
-        tests:
-          - not_null
-      - name: updated_at
+      - name: promo_status
 
   - name: stg_users
     description: Contains user information.
@@ -120,13 +104,14 @@ models:
       - name: user_id
         tests:
           - not_null
+          - unique
       - name: first_name
       - name: last_name
       - name: email
       - name: phone_number
-      - name: created_at
+      - name: created_at_utc
         tests:
           - not_null
-      - name: updated_at
+      - name: updated_at_utc
       - name: address_id
 

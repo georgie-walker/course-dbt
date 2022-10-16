@@ -1,0 +1,138 @@
+version: 2
+
+models:
+  - name: dim_products
+    description: "A table with information about the products sold by Greenery."
+    columns:
+      - name: product_id
+        description: "The unique ID for the product."
+        tests:
+          - not_null
+          - unique
+
+      - name: product_name
+        description: "The name of the product."
+
+      - name: product_price
+        description: "The price of the product (assumed USD)."
+        tests:
+          - positive_values
+
+      - name: quantity_available
+        description: "The inventory available for the product."
+        tests:
+          - positive_values
+
+      - name: distinct_orders
+        description: "The number of orders that have ever been placed for the product."
+        tests:
+          - positive_values
+
+      - name: latest_order_at
+        description: "When the most recent order of the product occurred."
+
+
+  - name: dim_users
+    description: "A table with information about Greenery's users."
+    columns:
+      - name: user_id
+        description: "The unique ID for the user."
+        tests:
+          - unique
+          - not_null
+
+      - name: first_name
+        description: "The user's first name."
+
+      - name: last_name
+        description: "The user's last name."
+
+      - name: email
+        description: "The user's email address."
+
+      - name: phone_number
+        description: "The user's phone number."
+
+      - name: address
+        description: "The user's address."
+
+      - name: zipcode
+        description: "The user's zip code."
+
+      - name: state
+        description: "The user's state."
+
+      - name: user_created_at
+        description: "When the user was created."
+
+      - name: user_updated_at
+        description: "When the user's information was last updated."
+
+
+  - name: fact_orders
+    description: "A table with information about Greenery's order history."
+    columns:
+      - name: order_id
+        description: "The unique ID for an order."
+        tests:
+          - unique
+          - not_null
+
+      - name: user_id
+        description: "The unique ID for a user."
+        tests:
+          - not_null
+
+      - name: promo_id
+        description: "The promo used in the order."
+
+      - name: address_id
+        description: "The user's address ID."
+
+      - name: order_created_at
+        description: "When the order was created."
+
+      - name: order_cost
+        description: "The cost of items in the order (exc delivery)."
+        tests:
+          - positive_values
+
+      - name: shipping_cost
+        description: "The cost of shipping for the order."
+        tests:
+          - positive_values
+
+      - name: total_cost
+        description: "The total cost of the order (inc delivery)."
+        tests:
+          - positive_values
+
+      - name: promo_discount
+        description: "The discount received on the order from a promo ID."
+        tests:
+          - positive_values
+
+      - name: product_quantity
+        description: "The number of items purchased in the order."
+        tests:
+          - positive_values
+
+      - name: tracking_id
+        description: "The tracking ID for shipping."
+
+      - name: shipping_service
+        description: "The service used for shipping."
+
+      - name: estimated_delivery_at_utc
+        description: "When the order was estimated to be delivered (if shipped)."
+
+      - name: delivered_at_utc
+        description: "When the order was actually delivered."
+
+      - name: days_to_deliver
+        description: "How many days delivery took since the order was placed."
+
+      - name: order_status
+        description: "The status of the order (preparing, shipped, delivered)."
+        tests:
+          - not_null
