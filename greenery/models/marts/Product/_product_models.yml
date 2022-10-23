@@ -47,3 +47,32 @@ models:
 
       - name: session_ended_at
         description: "When the session ended."
+
+
+  - name: fact_sessions_products
+    description: "A table containing information on sessions."
+    columns:
+      - name: session_id
+        description: "The unique ID for the session."
+        tests:
+          - not_null
+
+      - name: product_id
+        description: "The unique ID for the product."
+        tests:
+          - not_null
+
+      - name: product_added_to_cart
+        description: "A 1 or 0 value to indicate whether the product was added to cart within the session."
+
+      - name: product_checkout
+        description: "A 1 or 0 value to indicate whether there was a checkout attributed to the session."
+
+      - name: product_package_shipped
+        description: "A 1 or 0 value to indicate whether the product was added to cart within the session."        
+
+      - name: product_page_view
+        description: "A 1 or 0 value to indicate whether the product was viewed within the session."
+
+      - name: session_converted
+        description: "A 1 or 0 value to indicate whether session converted."

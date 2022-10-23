@@ -1,0 +1,8 @@
+version: 2
+
+macros:
+  - name: event_types
+    description: Returns a distinct list of event_types from the event_type field in stg_events.
+    docs:
+      show: true
+
