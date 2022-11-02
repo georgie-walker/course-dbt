@@ -48,6 +48,30 @@ models:
       - name: session_ended_at
         description: "When the session ended."
 
+      - name: num_add_to_cart_events
+        description: "The count of events under the event_type 'add_to_cart' that occurred during the session."
+
+      - name: add_to_cart_occurred
+        description: "A 1 or 0 value to indicate whether the event_type 'add_to_cart' occurred during the session."
+
+      - name: num_checkout_events
+        description: "The count of events under the event_type 'checkout' that occurred during the session."
+
+      - name: checkout_occurred
+        description: "A 1 or 0 value to indicate whether the event_type 'checkout' occurred during the session."
+
+      - name: num_package_shipped_events
+        description: "The count of events under the event_type 'package_shipped' that occurred during the session."
+
+      - name: package_shipped_occurred
+        description: "A 1 or 0 value to indicate whether the event_type 'package_shipped' occurred during the session."
+
+      - name: num_page_view_events
+        description: "The count of events under the event_type 'page_view' that occurred during the session."
+
+      - name: page_view_occurred
+        description: "A 1 or 0 value to indicate whether the event_type 'page_view' occurred during the session."        
+
 
   - name: fact_sessions_products
     description: "A table containing information on sessions."
